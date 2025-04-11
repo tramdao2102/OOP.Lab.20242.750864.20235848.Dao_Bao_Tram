@@ -1,0 +1,13 @@
+10. 
+Q: If you create a constructor method to build a DVD by title then create a constructor method to build a DVD by category. Does JAVA allow you to do this
+A: Có cho phép tạo miễn là các constructor này có các parameters khác nhau. Lúc này gọi là nạp chồng hàm khởi tạo, tức là có nhiều hàm tạo nhưng với các đối số đầu vào khác nhau.
+
+15.
+Q1: Is JAVA a Pass by Value or a Pass by Reference programming language?
+A1: JAVA là ngôn ngữ tham trị
+
+Q2: After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two objects still remain?
+A2: Vì JAVA là ngôn ngữ truyền tham trị nên thực tế khi gọi hàm swap ta chỉ làm việc với bản sao của giá trị được truyền vào, nên về bản chất title của 2 dvd trên không đổi.
+
+Q3: After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is the title of the JungleDVD changed?
+A3: Khi gọi hàm changeTitle để đổi 2 giá trị qua 1 biến trung gian(chứa giá trị sao chép từ 1 trong 2 biến được đưa ở phần tham số).
