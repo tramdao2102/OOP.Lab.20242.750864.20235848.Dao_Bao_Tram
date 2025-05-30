@@ -2,7 +2,7 @@ package hust.soict.hedspi.aims.media;
 
 import java.util.Comparator;
 
-public abstract class Media {
+public abstract class Media implements Comparable<Media> {
 
 	public Media() {
 		
@@ -56,26 +56,30 @@ public abstract class Media {
 	        return this.getTitle().toLowerCase().contains(title.toLowerCase());
 	    }
 	    
+	    @Override
 	    public boolean equals(Object obj) {
-	        if (obj == this) {
-	            return true;
-	        }
-	        if (!(obj instanceof Media)) {
-	            return false;
-	        }
-	        return ((Media)obj).getTitle() == this.getTitle();
+	        if (this == obj) return true;
+	        if (obj == null) return false;
+	        if (!(obj instanceof Media)) return false;
+
+	        Media other = (Media) obj;
+	        // So sánh title và cost
+	        return this.title != null && this.title.equals(other.title)
+	               && Float.compare(this.cost, other.cost) == 0;
 	    }
 	    
 	    public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
 	    public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
 	    
+	    @Override
 	    public int compareTo(Media other) {
-	        int titleComparison = this.getTitle().compareTo(other.getTitle());
-	        if (titleComparison != 0) {
-	            return titleComparison;
-	        } else {
-	            return Double.compare(this.getCost(), other.getCost());
-	        }
+	        if (other == null) throw new NullPointerException("Media to compare is null");
+
+	        int titleCompare = this.title.compareTo(other.title);
+	        if (titleCompare != 0) return titleCompare;
+
+	        return Float.compare(this.cost, other.cost);
 	    }
+
 
 }
